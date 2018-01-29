@@ -15,11 +15,11 @@ app.get('/', function (req, res) {
       
       client.connect();
       
-      client.query('SELECT * FROM test;', (err, res) => {
+      client.query('SELECT * FROM test;', (err, response) => {
         if (err) res.send(err);
 
         let _str = '';
-        for (let row of res.rows) {
+        for (let row of response.rows) {
             _str+=row;
         }
         res.send(JSON.stringify(_str))
