@@ -12,5 +12,14 @@ router.get('/', function (req, res, next) {
         res.status(200).send(success);
     });
 });
+
+router.get('/:uuid', function (req, res, next) {
+    _service.getByUuid(req.params.uuid, function(error, success){
+        if(error){
+            res.status(500).send(error);
+        }
+        res.status(200).send(success);
+    });
+});
     
 module.exports = router;
