@@ -5,7 +5,12 @@ const service = require('../services/linkService.js');
 const _service = new service();
 
 router.get('/', function (req, res, next) {
-    res.status(200).send(_service.listAll());
+    _service.listAll(function(error, success){
+        if(error){
+            res.status(500).send(error);
+        }
+        res.status(200).send(success);
+    });
 });
     
 module.exports = router;
