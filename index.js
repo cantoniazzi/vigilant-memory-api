@@ -8,7 +8,6 @@ const app = express();
 var port = process.env.PORT || 8080;
 
 app.get('/', function (req, res) {
-    res.send('Hello World!');
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: true,
