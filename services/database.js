@@ -16,7 +16,7 @@ const database = (function() {
     }
 
     let close = function() {
-        client.end();
+        client.close();
     }
 
     database.prototype.read = function(query, cb) {
@@ -36,7 +36,7 @@ const database = (function() {
                 }
             }
             
-            close();
+            done();
 
             return cb(null, _result);
             
