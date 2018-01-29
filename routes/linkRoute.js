@@ -14,6 +14,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:uuid', function (req, res, next) {
+    console.log(req.params.uuid);
     _service.getByUuid(req.params.uuid, function(error, success){
         if(error){
             res.status(500).send(error);
