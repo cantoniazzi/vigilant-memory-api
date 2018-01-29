@@ -22,6 +22,7 @@ app.get('/', function (req, res) {
         for (let row of response.rows) {
             _str+=row;
         }
+        console.log(_str);
         res.send(JSON.stringify(_str))
         client.end();
       });  
