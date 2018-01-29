@@ -9,7 +9,7 @@ const linkService = (function() {
     };
 
     linkService.prototype.listAll = function(cb) {
-        let query = 'SELECT * FROM Links'
+        let query = 'SELECT * FROM links;';
         db.read(query, (error, response) => {
             if (error){
                 console.log(error);
