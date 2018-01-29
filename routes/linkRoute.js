@@ -23,17 +23,16 @@ router.get('/:uuid', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    console.log(req.body);
     _service.create(req.body, function(error, success){
         if(error){
             res.status(500).send(error);
         }
-        res.status(200).send(success);
+        res.status(201).send(success);
     });
 });
 
 router.put('/:uuid', function (req, res, next) {
-    _service.update(req.params.uuid, req.params, function(error, success){
+    _service.update(req.params.uuid, req.body, function(error, success){
         if(error){
             res.status(500).send(error);
         }

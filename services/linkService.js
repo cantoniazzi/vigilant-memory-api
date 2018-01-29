@@ -41,7 +41,12 @@ const linkService = (function() {
     };
 
     linkService.prototype.update = function(uuid, data, cb) {
-        let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
+        let query = `UPDATE links SET title = '${data.title}', 
+        description = '${data.description}', 
+        uri = '${data.uri}',  
+        tags = '${data.tags}'
+         WHERE uuid = '${uuid}';`
+
         db.execute(query, function(error, response){
             if (error){
                 return cb(error, null);
