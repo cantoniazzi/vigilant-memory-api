@@ -23,7 +23,8 @@ router.get('/:uuid', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    _service.create(req.params, function(error, success){
+    console.log(req.body);
+    _service.create(req.body, function(error, success){
         if(error){
             res.status(500).send(error);
         }
@@ -32,7 +33,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:uuid', function (req, res, next) {
-    _service.create(req.params.uuid, req.params, function(error, success){
+    _service.update(req.params.uuid, req.params, function(error, success){
         if(error){
             res.status(500).send(error);
         }

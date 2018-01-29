@@ -10,7 +10,7 @@ const linkService = (function() {
 
     linkService.prototype.listAll = function(cb) {
         let query = 'SELECT * FROM links;';
-        db.read(query, function(error, response){
+        db.execute(query, function(error, response){
             if (error){
                 return cb(error, null);
             }
@@ -20,7 +20,7 @@ const linkService = (function() {
 
     linkService.prototype.getByUuid = function(uuid, cb) {
         let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
-        db.read(query, function(error, response){
+        db.execute(query, function(error, response){
             if (error){
                 return cb(error, null);
             }
@@ -29,8 +29,10 @@ const linkService = (function() {
     };
 
     linkService.prototype.create = function(data, cb) {
-        let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
-        db.read(query, function(error, response){
+
+        let query = `INSERT INTO links (title, description, uri, tags) VALUES('${data.title}', '${data.description}', '${data.uri}', '${data.tags}')`
+        
+        db.execute(query, function(error, response){
             if (error){
                 return cb(error, null);
             }
@@ -40,7 +42,7 @@ const linkService = (function() {
 
     linkService.prototype.update = function(uuid, data, cb) {
         let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
-        db.read(query, function(error, response){
+        db.execute(query, function(error, response){
             if (error){
                 return cb(error, null);
             }
@@ -49,8 +51,8 @@ const linkService = (function() {
     };
 
     linkService.prototype.delete = function(uuid, cb) {
-        let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
-        db.read(query, function(error, response){
+        let query = `DELETE FROM links WHERE uuid = '${uuid}';`;
+        db.execute(query, function(error, response){
             if (error){
                 return cb(error, null);
             }

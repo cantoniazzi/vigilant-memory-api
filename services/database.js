@@ -19,7 +19,7 @@ const database = (function() {
         client.close();
     }
 
-    database.prototype.read = function(query, cb) {
+    database.prototype.execute = function(query, cb) {
         
         connect();
 
