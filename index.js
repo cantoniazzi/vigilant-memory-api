@@ -18,13 +18,12 @@ app.get('/', function (req, res) {
       client.query('SELECT * FROM test;', (err, response) => {
         if (err) res.send(err.message);
 
-        let _str = '';
+        let _result = [];
         for (let row of response.rows) {
-            console.log(JSON.stringify(row));
-            _str+=row;
+            _result.push(JSON.stringify(row));
         }
         
-        res.send(JSON.stringify(_str))
+        res.send(_result);
         client.end();
       });  
 });
