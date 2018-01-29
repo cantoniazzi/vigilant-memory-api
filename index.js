@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 
         let _result = [];
         for (let row of response.rows) {
-            _result.push(JSON.stringify(row));
+            _result.push(row);
         }
         
         res.send(_result);
