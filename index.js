@@ -20,9 +20,10 @@ app.get('/', function (req, res) {
 
         let _str = '';
         for (let row of response.rows) {
+            console.log(JSON.stringify(row));
             _str+=row;
         }
-        console.log(_str);
+        
         res.send(JSON.stringify(_str))
         client.end();
       });  
