@@ -12,11 +12,11 @@ const database = (function() {
     };
 
     let connect = function() {
-        if (client) client.connect();
+        client.connect();
     }
 
     let close = function() {
-        if (client) client.end();
+        client.end();
     }
 
     database.prototype.read = function(query, cb) {
