@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
       client.connect();
       
       client.query('SELECT * FROM test;', (err, res) => {
-        if (err) throw err;
+        if (err) res.send(err);
 
         let _str = '';
         for (let row of res.rows) {
