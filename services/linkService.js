@@ -28,6 +28,36 @@ const linkService = (function() {
         });
     };
 
+    linkService.prototype.create = function(data, cb) {
+        let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
+        db.read(query, function(error, response){
+            if (error){
+                return cb(error, null);
+            }
+            return cb(null, response);
+        });
+    };
+
+    linkService.prototype.update = function(uuid, data, cb) {
+        let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
+        db.read(query, function(error, response){
+            if (error){
+                return cb(error, null);
+            }
+            return cb(null, response);
+        });
+    };
+
+    linkService.prototype.delete = function(uuid, cb) {
+        let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
+        db.read(query, function(error, response){
+            if (error){
+                return cb(error, null);
+            }
+            return cb(null, response);
+        });
+    };
+
     return linkService;
 
 })();

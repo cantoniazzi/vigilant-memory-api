@@ -14,8 +14,34 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:uuid', function (req, res, next) {
-    console.log(req.params.uuid);
     _service.getByUuid(req.params.uuid, function(error, success){
+        if(error){
+            res.status(500).send(error);
+        }
+        res.status(200).send(success);
+    });
+});
+
+router.post('/', function (req, res, next) {
+    _service.create(req.params, function(error, success){
+        if(error){
+            res.status(500).send(error);
+        }
+        res.status(200).send(success);
+    });
+});
+
+router.put('/:uuid', function (req, res, next) {
+    _service.create(req.params.uuid, req.params, function(error, success){
+        if(error){
+            res.status(500).send(error);
+        }
+        res.status(200).send(success);
+    });
+});
+
+router.delete('/:uuid', function (req, res, next) {
+    _service.delete(req.params.uuid, function(error, success){
         if(error){
             res.status(500).send(error);
         }
