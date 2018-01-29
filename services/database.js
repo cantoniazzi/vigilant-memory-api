@@ -35,8 +35,6 @@ const database = (function() {
                     _result.push(row);
                 }
             }
-            
-            done();
 
             return cb(null, _result);
             
