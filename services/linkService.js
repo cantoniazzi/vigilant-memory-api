@@ -10,22 +10,12 @@ const linkService = (function() {
 
     linkService.prototype.listAll = function(cb) {
         let query = 'SELECT * FROM links;';
-        db.read(query, (error, response) => {
+        db.read(query, function(error, response){
             if (error){
-                console.log(error);
                 return cb(error, null);
             }
-    
-            let _result = [];
-            if (response && response.rows){
-                for (let row of response.rows) {
-                    _result.push(row);
-                }
-            }
-
-            return cb(null, _result);
-            
-          });  
+            return cb(null, response);
+        });
     };
 
     return linkService;
