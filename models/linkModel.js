@@ -26,7 +26,7 @@ let linkModel = (function(){
                 type: Sequelize.STRING
             }
         }, 
-        { freezeTableName: true },
+        { freezeTableName: true, timestamps: false  },
         { timestamps: false }
     );
     
