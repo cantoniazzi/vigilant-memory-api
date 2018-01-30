@@ -66,15 +66,11 @@ let linkModel = (function(){
         return new Promise(
             function (resolve, reject) {
 
-                model
-                .build({ title: data.title, description: data.description, tags: data.tags, uri : data.uri })
-                .save()
-                .then(savedData => {
-                    resolve(savedData);
-                })
-                .catch(error => {
+                model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(user => {
+                    resolve(model.get()); 
+                  }).catch(error => {
                     reject(error);
-                })
+                });
             }
         );
     }
