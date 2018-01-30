@@ -26,8 +26,10 @@ let linkModel = (function(){
                 type: Sequelize.STRING
             }
         }, 
-        { freezeTableName: true, timestamps: false  },
-        { timestamps: false }
+        { 
+            freezeTableName: true, 
+            timestamps: false
+        }
     );
     
     let linkModel = function() {
@@ -68,7 +70,9 @@ let linkModel = (function(){
             function (resolve, reject) {
 
                 model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(item => {
-                    resolve(item.get()); 
+                    let returnData = item.get();
+                    delete returnData['id'];
+                    resolve(returnData); 
                   }).catch(error => {
                     reject(error);
                 });
