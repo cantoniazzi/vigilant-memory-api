@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 const indexRoute = require('./routes/index.js');
 const linkRoute = require('./routes/linkRoute.js');
+const crawlerRoute = require('./routes/crawlerRoute.js');
 
 // set the port of application
 // process.env.PORT lets the port be set by Heroku
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 
 app.use('/', indexRoute);
 app.use('/links', linkRoute);
+app.use('/page-info', crawlerRoute);
 
 app.listen(port, function () {
     console.log('Server on')
