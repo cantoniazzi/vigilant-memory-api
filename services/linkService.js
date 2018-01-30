@@ -19,15 +19,17 @@ const linkService = (function() {
         );
     } 
 
-    // linkService.prototype.getByUuid = function(uuid, cb) {
-    //     let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
-    //     db.execute(query, function(error, response){
-    //         if (error){
-    //             return cb(error, null);
-    //         }
-    //         return cb(null, response);
-    //     });
-    // };
+    linkService.prototype.getByUuid = function(uuid) {
+        return new Promise(
+            function (resolve, reject) {
+                model.getByUuidField(uuid).then(function(links) {
+                    resolve(links);
+                }).catch(function(error){
+                    reject(error);
+                });
+            }
+        );
+    };
 
     // linkService.prototype.create = function(data, cb) {
 

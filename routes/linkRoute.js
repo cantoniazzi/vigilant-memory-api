@@ -12,14 +12,13 @@ router.get('/', function (req, res, next) {
     });
 });
 
-// router.get('/:uuid', function (req, res, next) {
-//     _service.getByUuid(req.params.uuid, function(error, success){
-//         if(error){
-//             res.status(500).send(error);
-//         }
-//         res.status(200).send(success);
-//     });
-// });
+router.get('/:uuid', function (req, res, next) {
+    _service.getByUuid(req.params.uuid).then(function(links) {
+        res.status(200).send(links);
+    }).catch(function(error){
+        res.status(500).send(error);
+    });
+});
 
 // router.post('/', function (req, res, next) {
 //     _service.create(req.body, function(error, success){

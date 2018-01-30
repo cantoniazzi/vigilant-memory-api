@@ -44,9 +44,23 @@ let linkModel = (function(){
                 });
             }
         );
-    }
+    };
 
-    
+    linkModel.prototype.getByUuidField = function(uuid){
+        return new Promise(
+            function (resolve, reject) {
+
+                model.findOne({
+                    where: {uuid: uuid},
+                    attributes: ['uuid', 'title', 'description', 'uri', 'tags']
+                  }).then(project => {
+                    resolve(project);
+                  }).catch(function(error){
+                    reject(error);
+                });
+            }
+        );
+    }
 
     return linkModel;
 
