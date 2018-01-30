@@ -104,9 +104,8 @@ let linkModel = (function(){
     linkModel.prototype.delete = function(uuid){
         return new Promise(
             function (resolve, reject) {
-
                 model.destory({  
-                    where: { uui: uuid }
+                    where: { uuid: uuid }
                 })
                 .then(deletedItem => {
                     resolve(deletedItem);
