@@ -5,29 +5,30 @@ var sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://user:pass@
 let linkModel = (function(){
     
     let model = sequelize.define('links', {
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        uuid: {
-            type: Sequelize.STRING,
-        },
-        title: {
-            type: Sequelize.STRING,
-        },
-        description: {
-            type: Sequelize.STRING
-        },
-        uri: {
-            type: Sequelize.STRING
-        },
-        tags: {
-            type: Sequelize.STRING
-        }
-        }, {
-        freezeTableName: true
-    });
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true,
+            },
+            uuid: {
+                type: Sequelize.STRING,
+            },
+            title: {
+                type: Sequelize.STRING,
+            },
+            description: {
+                type: Sequelize.STRING
+            },
+            uri: {
+                type: Sequelize.STRING
+            },
+            tags: {
+                type: Sequelize.STRING
+            }
+        }, 
+        { freezeTableName: true },
+        { timestamps: false }
+    );
     
     let linkModel = function() {
     };
