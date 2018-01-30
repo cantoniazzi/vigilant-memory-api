@@ -66,8 +66,8 @@ let linkModel = (function(){
         return new Promise(
             function (resolve, reject) {
 
-                model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(user => {
-                    resolve(model.get()); 
+                model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(item => {
+                    resolve(item.get()); 
                   }).catch(error => {
                     reject(error);
                 });
