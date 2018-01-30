@@ -1,15 +1,18 @@
-const express = require('express');
+'use strict';
+
+const express = require('express'),
+  bodyParser = require('body-parser'),
+  morgan = require('morgan'),
+  db = require('./config/db.js'),
+  router = require('./router/index');
+
 const app = express();
-const router = express.Router();
-const bodyParser = require("body-parser");
-
-const indexRoute = require('./routes/index.js');
-const linkRoute = require('./routes/linkRoute.js');
-const crawlerRoute = require('./routes/crawlerRoute.js');
-
-// set the port of application
 // process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
+
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -17,14 +20,16 @@ app.use(function(req, res, next) {
     next();
 });  
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-  
+app.use((req, res, next) => {
+  res.header('Content-Type', 'application/json');
+  next();
+});
 
-app.use('/', indexRoute);
-app.use('/links', linkRoute);
-app.use('/page-info', crawlerRoute);
+router(app, db);
 
-app.listen(port, function () {
-    console.log('Server on')
+//drop and resync with { force: true }
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log('Express listening on port:', port);
+  });
 });
