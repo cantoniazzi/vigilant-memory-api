@@ -35,7 +35,9 @@ let linkModel = (function(){
     linkModel.prototype.listAll = function(){
         return new Promise(
             function (resolve, reject) {
-                model.findAll().then(function(links) {
+                model.findAll({
+                    attributes : ['uuid', 'title', 'description', 'uri', 'tags']}
+                ).then(function(links) {
                     resolve(links);
                 }).catch(function(error){
                     reject(error); // reject
