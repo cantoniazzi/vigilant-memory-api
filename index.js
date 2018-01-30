@@ -8,7 +8,7 @@ const linkRoute = require('./routes/linkRoute.js');
 
 // set the port of application
 // process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

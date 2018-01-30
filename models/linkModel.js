@@ -7,6 +7,8 @@ let linkModel = (function(){
     let model = sequelize.define('links', {
         id: {
             type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
         },
         uuid: {
             type: Sequelize.STRING,
