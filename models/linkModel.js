@@ -60,6 +60,23 @@ let linkModel = (function(){
                 });
             }
         );
+    };
+
+    linkModel.prototype.create = function(data){
+        return new Promise(
+            function (resolve, reject) {
+
+                model
+                .build({ title: data.title, description: data.description, tags: data.tags, uri : data.uri })
+                .save()
+                .then(savedData => {
+                    resolve(savedData);
+                })
+                .catch(error => {
+                    reject(error);
+                })
+            }
+        );
     }
 
     return linkModel;

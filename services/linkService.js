@@ -22,8 +22,8 @@ const linkService = (function() {
     linkService.prototype.getByUuid = function(uuid) {
         return new Promise(
             function (resolve, reject) {
-                model.getByUuidField(uuid).then(function(links) {
-                    resolve(links);
+                model.getByUuidField(uuid).then(function(item) {
+                    resolve(item);
                 }).catch(function(error){
                     reject(error);
                 });
@@ -31,17 +31,17 @@ const linkService = (function() {
         );
     };
 
-    // linkService.prototype.create = function(data, cb) {
-
-    //     let query = `INSERT INTO links (title, description, uri, tags) VALUES('${data.title}', '${data.description}', '${data.uri}', '${data.tags}')`
-        
-    //     db.execute(query, function(error, response){
-    //         if (error){
-    //             return cb(error, null);
-    //         }
-    //         return cb(null, response);
-    //     });
-    // };
+    linkService.prototype.create = function(data) {
+        return new Promise(
+            function (resolve, reject) {
+                model.create(data).then(function(savedItem) {
+                    resolve(savedItem);
+                }).catch(function(error){
+                    reject(error);
+                });
+            }
+        );
+    };
 
     // linkService.prototype.update = function(uuid, data, cb) {
     //     let query = `UPDATE links SET title = '${data.title}', 
