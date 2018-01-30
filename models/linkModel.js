@@ -24,12 +24,6 @@ let linkModel = (function(){
         },
         tags: {
             type: Sequelize.STRING
-        },
-        createdAt: {
-            type: Sequelize.DATE
-        },
-        updatedAt: {
-            type: Sequelize.DATE
         }
         }, {
         freezeTableName: true
