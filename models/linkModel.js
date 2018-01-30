@@ -69,10 +69,9 @@ let linkModel = (function(){
         return new Promise(
             function (resolve, reject) {
 
-                model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(item => {
-                    let returnData = item.get();
-                    delete returnData['id'];
-                    resolve(returnData); 
+                model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(newItem => {
+                    delete newItem['id'];
+                    resolve(newItem); 
                   }).catch(error => {
                     reject(error);
                 });
@@ -84,25 +83,19 @@ let linkModel = (function(){
         return new Promise(
             function (resolve, reject) {
 
-                model.find({ where: { uuid: uuid } })
-                    .on('success', function (item) {
-                        console.log('item', item);
-                        if (item) {
-                            console.log('item', item);
-                            item.updateAttributes({
-                                title: data.title, 
-                                description: data.description, 
-                                tags: data.tags, 
-                                uri: data.uri
-                            })
-                            .success(function () {})
-                            .error(function (error) {
-                                reject(error);
-                            })
-                        }
-                    }).error(function (error) {
-                        reject(error);
-                    })
+                const newData = {  
+                    title: data.title, 
+                    description: data.description, 
+                    tags: data.tags, 
+                    uri: data.uri
+                  };
+                  
+                  model.update(newData, {where: { uuid: uuid } })  
+                    .then(updatedItem => {
+                        resolve(updatedItem);
+                  }).catch(error => {
+                    reject(error);
+                });
             }
         );
     }
