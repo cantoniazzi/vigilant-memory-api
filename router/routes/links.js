@@ -14,7 +14,7 @@ module.exports = (app, db) => {
   app.get('/link/:id', (req, res) => {
     const id = req.params.id;
     db.links.find({
-      where: { id: id}
+      where: { uuid: id}
     })
       .then(link => {
         res.json(link);
@@ -39,7 +39,7 @@ module.exports = (app, db) => {
     const id = req.params.id;
     const updates = req.body.updates;
     db.links.find({
-      where: { id: id }
+      where: { uuid: id }
     })
       .then(link => {
         return link.updateAttributes(updates)
@@ -53,7 +53,7 @@ module.exports = (app, db) => {
   app.delete('/link/:id', (req, res) => {
     const id = req.params.id;
     db.links.destroy({
-      where: { id: id }
+      where: { uuid: id }
     })
       .then(deletedlink => {
         res.json(deletedlink);
