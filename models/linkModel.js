@@ -70,14 +70,15 @@ let linkModel = (function(){
             function (resolve, reject) {
 
                 model.create({ title: data.title, description: data.description, tags: data.tags, uri : data.uri }, { fields: [ 'title', 'description', 'tags', 'uri' ] }).then(newItem => {
-                    delete newItem['id'];
-                    resolve(newItem); 
+                    let returnData = newItem; 
+                    delete returnData['id'];
+                    resolve(returnData); 
                   }).catch(error => {
                     reject(error);
                 });
             }
         );
-    }
+    };
 
     linkModel.prototype.update = function(uuid, data){
         return new Promise(
@@ -98,7 +99,23 @@ let linkModel = (function(){
                 });
             }
         );
-    }
+    };
+
+    linkModel.prototype.delete = function(uuid){
+        return new Promise(
+            function (resolve, reject) {
+
+                model.destory({  
+                    where: { uui: uuid }
+                })
+                .then(deletedItem => {
+                    resolve(deletedItem);
+                }).catch(error => {
+                    reject(error);
+                });
+            }
+        );
+    };
 
     return linkModel;
 

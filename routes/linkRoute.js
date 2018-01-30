@@ -36,13 +36,12 @@ router.put('/:uuid', function (req, res, next) {
     });
 });
 
-// router.delete('/:uuid', function (req, res, next) {
-//     _service.delete(req.params.uuid, function(error, success){
-//         if(error){
-//             res.status(500).send(error);
-//         }
-//         res.status(200).send(success);
-//     });
-// });
+router.delete('/:uuid', function (req, res, next) {
+    _service.delete(req.params.uuid).then(function(item) {
+        res.status(200).send(item);
+    }).catch(function(error){
+        res.status(500).send(error);
+    });
+});
     
 module.exports = router;

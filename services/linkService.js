@@ -55,15 +55,17 @@ const linkService = (function() {
         );
     };
 
-    // linkService.prototype.delete = function(uuid, cb) {
-    //     let query = `DELETE FROM links WHERE uuid = '${uuid}';`;
-    //     db.execute(query, function(error, response){
-    //         if (error){
-    //             return cb(error, null);
-    //         }
-    //         return cb(null, response);
-    //     });
-    // };
+    linkService.prototype.delete = function(uuid) {
+        return new Promise(
+            function (resolve, reject) {
+                model.delete(uuid).then(function(deletedItem) {
+                    resolve(deletedItem);
+                }).catch(function(error){
+                    reject(error);
+                });
+            }
+        );
+    };
 
     return linkService;
 
