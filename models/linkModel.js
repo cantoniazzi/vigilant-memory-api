@@ -4,7 +4,7 @@ var sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://ugtgfnhmus
 
 let linkModel = (function(){
     
-    let model = sequelize.define('link', {
+    let model = sequelize.define('links', {
         title: {
             type: Sequelize.STRING,
         },
