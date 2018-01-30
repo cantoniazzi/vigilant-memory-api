@@ -5,6 +5,12 @@ var sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://ugtgfnhmus
 let linkModel = (function(){
     
     let model = sequelize.define('links', {
+        id: {
+            type: Sequelize.INTEGER,
+        },
+        uuid: {
+            type: Sequelize.STRING,
+        },
         title: {
             type: Sequelize.STRING,
         },
@@ -16,6 +22,12 @@ let linkModel = (function(){
         },
         tags: {
             type: Sequelize.STRING
+        },
+        created_at: {
+            type: Sequelize.DATE
+        },
+        updated_at: {
+            type: Sequelize.DATE
         }
         }, {
         freezeTableName: true
