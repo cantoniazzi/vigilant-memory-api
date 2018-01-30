@@ -28,14 +28,13 @@ router.post('/', function (req, res, next) {
     });
 });
 
-// router.put('/:uuid', function (req, res, next) {
-//     _service.update(req.params.uuid, req.body, function(error, success){
-//         if(error){
-//             res.status(500).send(error);
-//         }
-//         res.status(200).send(success);
-//     });
-// });
+router.put('/:uuid', function (req, res, next) {
+    _service.update(req.params.uuid, req.body).then(function(item) {
+        res.status(200).send(item);
+    }).catch(function(error){
+        res.status(500).send(error);
+    });
+});
 
 // router.delete('/:uuid', function (req, res, next) {
 //     _service.delete(req.params.uuid, function(error, success){

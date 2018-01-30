@@ -56,8 +56,8 @@ let linkModel = (function(){
                 model.findOne({
                     where: {uuid: uuid},
                     attributes: ['uuid', 'title', 'description', 'uri', 'tags']
-                  }).then(project => {
-                    resolve(project);
+                  }).then(item => {
+                    resolve(item);
                   }).catch(function(error){
                     reject(error);
                 });
@@ -76,6 +76,31 @@ let linkModel = (function(){
                   }).catch(error => {
                     reject(error);
                 });
+            }
+        );
+    }
+
+    linkModel.prototype.update = function(uuid, data){
+        return new Promise(
+            function (resolve, reject) {
+
+                model.find({ where: { uuid: uuid } })
+                    .on('success', function (item) {
+                        if (item) {
+                            item.updateAttributes({
+                                title: data.title, 
+                                description: data.description, 
+                                tags: data.tags, 
+                                uri: data.uri
+                            })
+                            .success(function () {})
+                            .error(function (error) {
+                                reject(error);
+                            })
+                        }
+                    }).error(function (error) {
+                        reject(error);
+                    })
             }
         );
     }

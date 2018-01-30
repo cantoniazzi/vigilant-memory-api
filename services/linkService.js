@@ -43,20 +43,17 @@ const linkService = (function() {
         );
     };
 
-    // linkService.prototype.update = function(uuid, data, cb) {
-    //     let query = `UPDATE links SET title = '${data.title}', 
-    //     description = '${data.description}', 
-    //     uri = '${data.uri}',  
-    //     tags = '${data.tags}'
-    //      WHERE uuid = '${uuid}';`
-
-    //     db.execute(query, function(error, response){
-    //         if (error){
-    //             return cb(error, null);
-    //         }
-    //         return cb(null, response);
-    //     });
-    // };
+    linkService.prototype.update = function(uuid, data) {
+        return new Promise(
+            function (resolve, reject) {
+                model.update(uuid, data).then(function(updatedItem) {
+                    resolve(updatedItem);
+                }).catch(function(error){
+                    reject(error);
+                });
+            }
+        );
+    };
 
     // linkService.prototype.delete = function(uuid, cb) {
     //     let query = `DELETE FROM links WHERE uuid = '${uuid}';`;
