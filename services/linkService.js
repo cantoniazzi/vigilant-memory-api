@@ -7,15 +7,17 @@ const linkService = (function() {
     let linkService = function() {
     };
 
-    linkService.prototype.listAll = new Promise(
-        function (resolve, reject) {
-            model.listAll().then(function(links) {
-                resolve(links);
-            }).catch(function(error){
-                reject(error); // reject
-            });
-        }
-    );
+    linkService.prototype.listAll = function(){
+        return new Promise(
+            function (resolve, reject) {
+                model.listAll().then(function(links) {
+                    resolve(links);
+                }).catch(function(error){
+                    reject(error); // reject
+                });
+            }
+        );
+    } 
 
     // linkService.prototype.getByUuid = function(uuid, cb) {
     //     let query = `SELECT * FROM links WHERE uuid = '${uuid}';`;
