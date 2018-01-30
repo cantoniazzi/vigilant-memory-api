@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://ugtgfnhmusnqoz:176339cbaedbb88e1df0222855d56ce3a45d0b8c0d91db7a35a9bfe416ff4b9f@ec2-54-225-103-255.compute-1.amazonaws.com:5432/d94caap723e19o', {dialect: 'postgres'});
+var sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://user:pass@host:5432/name', {dialect: 'postgres'});
 
 let linkModel = (function(){
     
