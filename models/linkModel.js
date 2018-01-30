@@ -86,6 +86,7 @@ let linkModel = (function(){
 
                 model.find({ where: { uuid: uuid } })
                     .on('success', function (item) {
+                        console.log('item', item);
                         if (item) {
                             console.log('item', item);
                             item.updateAttributes({
